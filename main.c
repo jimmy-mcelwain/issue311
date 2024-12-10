@@ -2,32 +2,16 @@
 #include <time.h>
 #include <rcl/rcl.h>
 #include <rcl/types.h>
-#include <rcl/publisher.h>
 
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 
-#include <rosidl_runtime_c/string_functions.h>
-#include <rosidl_runtime_c/primitives_sequence_functions.h>
-
-#include <rmw/qos_profiles.h>
-#include <rmw_microros/ping.h>
-
-#include <sensor_msgs/msg/joint_state.h>
-
-#define JOINT_COUNT 15
-
 rcl_timer_t Ros_StateServer_Timer;
 rclc_executor_t Ros_StateServer_Executor;
-
-rcl_publisher_t publisherJointState;
-sensor_msgs__msg__JointState *msgJointState;
 
 static rcl_allocator_t rclAllocator;
 
 typedef int BOOL;
-
-#define MAX_JOINT_NAME_LENGTH 32
 
 void Ros_StateServer_TimerCallback(rcl_timer_t *timer, int64_t last_call_time)
 {
